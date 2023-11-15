@@ -1,0 +1,24 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int high = nums.length-1;
+        int low = 0;
+        return this.search_low(nums,low,high,target);
+    }
+
+    public int search_low(int[] nums, int low, int high, int target) {
+        int zhong = (high + low) / 2;
+        if(nums[high] == target) {
+            return high;
+        }
+        if(zhong == low & nums[zhong] != target) {
+            return -1;
+        }
+        if (nums[zhong] == target) {
+            return zhong;
+        }else if(nums[zhong] > target) {
+            return search_low(nums,low,zhong,target);
+        }else {
+            return search_low(nums,zhong,high,target);
+        }
+    }
+}
