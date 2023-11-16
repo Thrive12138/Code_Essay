@@ -4,14 +4,14 @@ class Solution {
         int low = 0;
         int high = nums.length - 1;
         for(int i = nums.length - 1; i >= 0; i--) {
-            if(Math.pow(nums[low], 2) >= Math.pow(nums[high], 2)){
-                arr[i] = (int)Math.pow(nums[low], 2);
+            if(nums[low] * nums[low] >= nums[high] * nums[high]){
+                arr[i] = nums[low] * nums[low];
                 if(low < high){
                     low++;
                 }
             }
             else{
-                arr[i] = (int)Math.pow(nums[high], 2);
+                arr[i] = nums[high] * nums[high];
                 if(low < high){
                     high--;
                 }
