@@ -1,0 +1,22 @@
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int[] arr = new int[nums.length];
+        int low = 0;
+        int high = nums.length - 1;
+        for(int i = nums.length - 1; i >= 0; i--) {
+            if(Math.pow(nums[low], 2) >= Math.pow(nums[high], 2)){
+                arr[i] = (int)Math.pow(nums[low], 2);
+                if(low < high){
+                    low++;
+                }
+            }
+            else{
+                arr[i] = (int)Math.pow(nums[high], 2);
+                if(low < high){
+                    high--;
+                }
+            }
+        }
+        return arr;
+    }
+}
