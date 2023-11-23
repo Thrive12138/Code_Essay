@@ -24,3 +24,20 @@ class Solution {
         return ans;
     }
 }
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> num = new HashMap<>();
+        int i = 0;
+        while(i < nums.length) {
+            if(num.containsKey(nums[i])) {
+                break;
+            }
+            else {
+                num.put(target - nums[i], i);
+            }
+            i++;
+        }
+        return new int[]{num.get(nums[i]), i};
+    }
+}
