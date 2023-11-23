@@ -1,0 +1,26 @@
+class Solution {
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        HashMap<Integer, Integer> num1and2 = new HashMap<>();
+        for(int i = 0; i < nums1.length; i++) {
+            for(int j = 0; j < nums2.length; j++) {
+                int sum1and2 = nums1[i] + nums2[j];
+                if(num1and2.containsKey(sum1and2)) {
+                    int val = num1and2.get(sum1and2);
+                    num1and2.put(sum1and2, ++val);
+                }else {
+                    num1and2.put(sum1and2, 1);
+                }
+            }
+        }
+        int sum = 0;
+        for(int k = 0; k < nums3.length; k++) {
+            for(int l = 0; l < nums4.length; l++) {
+                int sum3and4 = nums3[k] + nums4[l];
+                if(num1and2.containsKey(-1 * sum3and4)){
+                    sum += num1and2.get(-1 * sum3and4);
+                }
+            }
+        }
+        return sum;
+    }
+}
