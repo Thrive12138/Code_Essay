@@ -1,0 +1,26 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans = new int[2];
+        HashSet<Integer> num = new HashSet<>();
+        int i = 0;
+        while(i < nums.length) {
+            if(num.contains(nums[i])) {
+                break;
+            }
+            else {
+                num.add(target - nums[i]);
+            }
+            i++;
+        }
+        ans[1] = i;
+        int j = 0;
+        while(j < i) {
+            if(nums[j] == target - nums[i]) {
+                break;
+            }
+            j++;
+        }
+        ans[0] = j;
+        return ans;
+    }
+}
