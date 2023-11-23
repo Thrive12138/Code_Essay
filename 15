@@ -1,0 +1,38 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        if(nums[0] > 0 || nums.length <= 2 || nums == null) {
+            return ans;
+        }
+        int begin = 0;
+        while(begin < nums.length - 2) {
+            if(begin > 0 && nums[begin] == nums[begin - 1]) {
+                begin++;
+                continue;
+            }
+
+            int left = begin + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                if (nums[left] + nums[right] + nums[begin] == 0) {
+                    ans.add(new ArrayList<>(Arrays.asList(nums[begin], nums[left], nums[right])));
+                    
+                    left++; right--;
+                    while(left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+                    while(left < right && nums[right] == nums[right + 1]) {
+                        right--;
+                    }
+                }else if(nums[left] + nums[right] + nums[begin] < 0) {
+                    left++;
+                }else {
+                    right--;
+                }
+            }
+            begin++;
+        }
+        return ans;
+    }
+}
