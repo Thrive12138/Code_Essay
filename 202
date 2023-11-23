@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> num = new HashSet<>();
+        while(n != 1) {
+            num.add(n);
+            n = sunNum(n);
+            if(num.contains(n)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int sunNum(int n) {
+        int sum = 0;
+        while(n > 0) {
+            int singleNum = n % 10;
+            sum += singleNum * singleNum;
+            n = (n - singleNum) / 10;
+        }
+        return sum;
+    }
+}
