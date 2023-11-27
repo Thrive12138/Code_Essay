@@ -35,3 +35,30 @@ class Solution {
         return new String(charArray);
     }
 }
+
+============================================================================================
+class Solution {
+    public String reverseStr(String s, int k) {
+        int slow = 0;
+        int fast = 0;
+        char[] charArray = s.toCharArray();
+        for(int i = 2 * k; i <= s.length() + 2 * k; i += 2 * k) {
+            fast = Math.min(i - k, s.length());
+            slow = i - 2 * k;
+            charArray = rever(charArray, slow, fast - 1);
+        }
+        return new String(charArray);
+        
+    }
+
+    public char[] rever(char[] charArray, int slow, int fast) {
+        while(slow < fast) {
+            char temp = charArray[slow];
+            charArray[slow] = charArray[fast];
+            charArray[fast] = temp;
+            slow++;
+            fast--;
+        }
+        return charArray;
+    }
+}
