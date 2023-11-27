@@ -1,0 +1,11 @@
+class Solution {
+    public String pathEncryption(String path) {
+        char[] charArray = path.toCharArray();
+        for(int i = 0; i < charArray.length; i++) {
+            if(charArray[i] == '.') {
+                charArray[i] = ' ';
+            }
+        }
+        return new String(charArray);
+    }
+}
