@@ -1,0 +1,37 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        int lable = 2 * k;
+        int slow = 0;
+        int fast = 0;
+        while(lable <= s.length()) {
+            fast = lable - k;
+            slow = fast - k;
+            s = rever(s, slow, fast - 1);
+            lable += 2 * k;
+        }
+        int lableBefore = lable - 2 * k;
+        if(s.length() - lableBefore == 0) {
+            return s;
+        }else if(s.length() - lableBefore < k) {
+            slow = lableBefore;
+            fast = s.length();
+            return rever(s, slow, fast - 1);
+        }else {
+            slow = lableBefore;
+            fast = slow + k;
+            return rever(s, slow, fast - 1);
+        }
+    }
+
+    public String rever(String s, int slow, int fast) {
+        char[] charArray = s.toCharArray();
+        while(slow < fast) {
+            char temp = charArray[slow];
+            charArray[slow] = charArray[fast];
+            charArray[fast] = temp;
+            slow++;
+            fast--;
+        }
+        return new String(charArray);
+    }
+}
