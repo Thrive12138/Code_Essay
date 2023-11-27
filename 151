@@ -1,25 +1,21 @@
 class Solution {
     public String reverseWords(String s) {
+        s = s.trim();
         char[] charArray = s.toCharArray();
         int slow = charArray.length;
         int fast = charArray.length;
         String a = "";
-        int target = 0;
-        for(int j = 0; j < charArray.length; j++) {
-            if(charArray[j] != ' ') {
-                target = j;
-                break;
-            }
-        }
-        while(fast > target) {
+
+        
+        while(fast > 0) {
             for(int i = fast - 1; i >= 0; i--) {
                 if(charArray[i] != ' ' ) {
                     slow = i;
                     break;
                 }
             }
-            for(int k = slow; k >= target; k--) {
-                if(k == target) {
+            for(int k = slow; k >= 0; k--) {
+                if(k == 0) {
                     fast = k;
                     break;
                 }
