@@ -1,0 +1,37 @@
+class Solution {
+    public String reverseWords(String s) {
+        char[] charArray = s.toCharArray();
+        int slow = charArray.length;
+        int fast = charArray.length;
+        String a = "";
+        int target = 0;
+        for(int j = 0; j < charArray.length; j++) {
+            if(charArray[j] != ' ') {
+                target = j;
+                break;
+            }
+        }
+        while(fast > target) {
+            for(int i = fast - 1; i >= 0; i--) {
+                if(charArray[i] != ' ' ) {
+                    slow = i;
+                    break;
+                }
+            }
+            for(int k = slow; k >= target; k--) {
+                if(k == target) {
+                    fast = k;
+                    break;
+                }
+                if(charArray[k] != ' ' & charArray[k - 1] == ' ') {
+                    fast = k;
+                    break;
+                }
+            }
+            String str = new String(charArray, fast, slow - fast + 1);
+            a = a + str + " ";
+        }
+        return new String(a.substring(0, a.length() - 1));
+        
+    }
+}
