@@ -1,0 +1,12 @@
+class Solution {
+    public String dynamicPassword(String password, int target) {
+        char[] charArray = password.toCharArray();
+        String targetArray = new String(charArray, 0, target);
+        for(int i = 0; i < target; i++) {
+            charArray[i] = ' ';
+        }
+        String ans = new String(charArray);
+        ans = ans + targetArray;
+        return ans.trim();
+    }
+}
