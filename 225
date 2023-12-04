@@ -1,0 +1,57 @@
+class MyStack {
+    Queue<Integer> stackOne = new LinkedList<>();
+    Queue<Integer> stackTwo = new LinkedList<>();
+    public MyStack() {
+
+    }
+    
+    public void push(int x) {
+        stackOne.add(x);
+    }
+    
+    public int pop() {
+        int len = stackOne.size();
+        while(len > 1) {
+            int num = stackOne.remove();
+            stackTwo.add(num);
+            len--;
+        }
+        int ans = stackOne.remove();
+        len = stackTwo.size();
+        for(int i = 0; i < len; i++) {
+            int num = stackTwo.remove();
+            stackOne.add(num);
+        }
+        return ans;
+    }
+    
+    public int top() {
+        int len = stackOne.size();
+        int ans = 0;
+        while(len > 0) {
+            int num = stackOne.remove();
+            stackTwo.add(num);
+            len--;
+            ans = num;
+        }
+        len = stackTwo.size();
+        for(int i = 0; i < len; i++) {
+            int num = stackTwo.remove();
+            stackOne.add(num);
+        }
+        return ans;
+    }
+    
+    public boolean empty() {
+        return stackOne.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
