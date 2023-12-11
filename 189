@@ -1,0 +1,18 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int need = k % nums.length;
+        if(need == 0) {
+            return;
+        }
+        int[] temp = new int[need];
+        for(int i = 0; i < need; i++) {
+            temp[i] = nums[i + nums.length - need];
+        }
+        for(int i = nums.length - 1; i >= need; i--) {
+            nums[i] = nums[i - need];
+        }
+        for(int i = 0; i < need; i++) {
+            nums[i] = temp[i];
+        }
+    }
+}
