@@ -16,3 +16,22 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+    public int[] reverse(int[] nums, int begin, int end) {
+        while(end > begin) {
+            int temp = nums[end];
+            nums[end] = nums[begin];
+            nums[begin] = temp;
+            end--;
+            begin++;
+        }
+        return nums;
+    }
+}
