@@ -1,0 +1,23 @@
+class Solution {
+    public int longestSubarray(int[] nums) {
+        int remain = 1;
+        int l = 0, r = 0;
+        int ans = 0;
+        while (r < nums.length) {
+            if (nums[r] == 0) {
+                if (remain == 0) {
+                    //更新
+                    ans = Math.max(ans, r - l - 1);
+                    //移动左窗口
+                    while (nums[l++] != 0) ;
+                } else {
+                    remain--;
+                }
+            }
+
+            r++;
+        }
+        ans = Math.max(ans, r - l - 1);
+        return ans;
+    }
+}
