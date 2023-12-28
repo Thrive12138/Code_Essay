@@ -14,3 +14,24 @@ class Solution {
         return ans;
     }
 }
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int n = nums.length;
+        int ans = 0;
+        List<Integer> index = new ArrayList<>();
+        index.add(-1);
+        for (int right = 0; right < n; ++right) {
+            if(nums[right] == 0) {
+                index.add(right);
+            }
+        }
+        index.add(n);
+        if(index.size() <= k + 2) {
+            return nums.length;
+        }
+        for(int i = k + 1; i < index.size(); i++) {
+            ans = Math.max(ans, index.get(i) - (index.get(i - k - 1) + 1));
+        }
+        return ans;
+    }
+}
