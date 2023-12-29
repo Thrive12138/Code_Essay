@@ -1,0 +1,22 @@
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> star = new Stack<>();
+        for(int i : asteroids) {
+            boolean alive = true;
+            while (alive && i < 0 && !star.empty() && star.peek() > 0) {
+                alive = star.peek() < -i; // aster 是否存在
+                if (star.peek() <= -i) {  // 栈顶行星爆炸
+                    star.pop();
+                }
+            }
+            if (alive) {
+                star.push(i);
+            }
+        }
+        int[] ans = new int[star.size()];
+        for (int i = star.size() - 1; i >= 0; i--) {
+            ans[i] = star.pop();
+        }
+        return ans;
+    }
+}
