@@ -1,0 +1,53 @@
+class Solution {
+    int index;
+    public String decodeString(String s) {
+        Stack<String> use = new Stack<>();
+        index = 0;
+        while(index < s.length()) {
+            char now = s.charAt(index);
+            if(num(now) >= 0) {
+                use.push(num2(s));
+            } else if(now != ']') {
+                use.push(String.valueOf(now));
+                index++;
+            } else {
+                LinkedList<String> sub = new LinkedList<String>();
+                while(!"[".equals(use.peek())) {
+                    sub.add(use.pop());
+                }
+                Collections.reverse(sub);
+                String subs = new String();
+                for(int i = 0; i < sub.size(); i++) {
+                    subs = subs + sub.get(i);
+                }
+                use.pop();
+                int cishu = Integer.parseInt(use.pop());
+                StringBuffer sb = new StringBuffer();
+                for(int i = 0; i < cishu; i++) {
+                    sb.append(subs);
+                }
+                use.push(sb.toString());
+                index++;
+            }
+        }
+        String ans = new String();
+        while(!use.empty()) {
+            ans = use.pop() + ans;
+        }
+        return ans;
+    }
+    
+    public int num(char i) {
+        return "0123456789".indexOf(i);
+    }
+
+    public String num2(String s) {
+        StringBuffer sb = new StringBuffer();
+        while(num(s.charAt(index)) >= 0) {
+            sb.append(s.charAt(index++));
+        }
+        return sb.toString();
+    }
+
+
+}
